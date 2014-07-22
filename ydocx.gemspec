@@ -15,6 +15,12 @@ spec = Gem::Specification.new do |s|
    s.files       = Dir.glob("{bin,lib,spec}/**/*") + Dir.glob("*.txt")
    s.executables << "docx2xml"
    s.executables << "docx2html"
+
+   s.add_dependency 'rubyzip', '> 1.0.0'
+   s.add_dependency 'nokogiri', '>= 1.6.0'
+   s.add_dependency 'htmlentities'
+   s.add_dependency 'rmagick'
+
    s.homepage	 = "https://github.com/zdavatz/ydocx/"
 end
 
