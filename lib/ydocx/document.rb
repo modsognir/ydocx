@@ -13,7 +13,7 @@ require 'ydocx/builder'
 
 module YDocx
   class Document
-    attr_reader :builder,:contents, :images, :indecies,
+    attr_reader :builder,:contents, :images, :indices,
                 :parser, :path
     def self.open(file, options={})
       self.new(file, options)
@@ -22,7 +22,7 @@ module YDocx
       @parser = nil
       @builder = nil
       @contents = nil
-      @indecies = []
+      @indices = []
       @references = []
       @images = []
       @options = options
@@ -49,7 +49,7 @@ module YDocx
         builder.files = files.relative_path_from(files.dirname)
         builder.style = options[:style] if options.has_key?(:style)
         # option
-        builder.indecies = @indecies.dup
+        builder.indices = @indices.dup
         builder.references = @references.dup
 
         html = builder.build_html
@@ -124,7 +124,7 @@ module YDocx
       @parser = Parser.new(doc, rel) do |parser|
         parser.lang = @options[:lang] if @options[:lang]
         @contents = parser.parse
-        @indecies = parser.indecies
+        @indices = parser.indices
         @images = parser.images
       end
       @zip.close

@@ -8,12 +8,12 @@ require 'ydocx/markup_method'
 module YDocx
   class Parser
     include MarkupMethod
-    attr_accessor :indecies, :images, :result, :space, :lang
+    attr_accessor :indices, :images, :result, :space, :lang
     def initialize(doc, rel)
       @doc = Nokogiri::XML.parse(doc)
       @rel = Nokogiri::XML.parse(rel)
       @coder = HTMLEntities.new
-      @indecies = []
+      @indices = []
       @images = []
       @result = []
       @space = '&nbsp;'

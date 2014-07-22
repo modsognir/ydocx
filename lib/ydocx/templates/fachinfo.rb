@@ -109,11 +109,11 @@ module YDocx
       return markup(:h2, text, {:id => id})
     end
     def parse_title(node, text)
-      if @indecies.empty? and !text.empty? and node.previous and
+      if @indices.empty? and !text.empty? and node.previous and
          (node.previous.inner_text.strip.empty? or node.parent.previous.nil?)
         # The first line as package name
         title = (@lang == 'fr' ? 'Titre' : 'Titel')
-        @indecies << {:text => title, :id => title.downcase}
+        @indices << {:text => title, :id => title.downcase}
         return markup(:h1, text, {:id => title.downcase})
       else
         return nil
@@ -127,7 +127,7 @@ module YDocx
           # allow without line break
           # next if !node.previous.inner_text.empty? and !node.next.inner_text.empty?
           id = escape_id(chapter)
-          @indecies << {:text => chapter, :id => id}
+          @indices << {:text => chapter, :id => id}
           return parse_heading(text, id)
         end
       end
@@ -153,15 +153,15 @@ module YDocx
     end
     private
     def build_before_content
-      if @indecies
+      if @indices
         indices = []
-        @indecies.each do |index|
+        @indices.each do |index|
           if index.has_key?(:id)
             link = markup(:a, index[:text], {:href => "#" + index[:id]})
             indices << markup(:li, link)
           end
         end
-        markup(:div, markup(:ol, indices), {:id => 'indecies'})
+        markup(:div, markup(:ol, indices), {:id => 'indices'})
       end
     end
     def style
@@ -183,14 +183,14 @@ body {
   width:    100%;
   height:   auto;
 }
-div#indecies {
+div#indices {
   position: relative;
   padding:  0px;
   margin:   0px;
   float:    left;
   width:    215px;
 }
-div#indecies ol {
+div#indices ol {
   margin:  0;
   padding: 25px 0 0 40px;
 }
@@ -215,7 +215,7 @@ body{
   height:   100%;
   width:    100%;
 }
-div#indecies {
+div#indices {
   position: absolute;
   padding:  0 0 0 5px;
   height:   100%;
