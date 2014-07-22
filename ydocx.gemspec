@@ -1,8 +1,11 @@
-require File.join(File.dirname(__FILE__), 'lib', 'ydocx')
+# encoding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'ydocx/version'
 
 spec = Gem::Specification.new do |s|
    s.name        = "ydocx"
-   s.version     =  YDocx::VERSION
+   s.version     =  YDocx::Version.to_s
    s.summary     = "Parsing docx files with Ruby and output them as HTML and XML"
    s.description = ""
    s.author      = "'Yasuhiro Asak, Zeno R.R. Davatz"

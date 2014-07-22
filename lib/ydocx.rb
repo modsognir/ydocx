@@ -4,5 +4,4 @@
 require 'ydocx/document'
 
 module YDocx
-   VERSION = '1.2.5'
 end
